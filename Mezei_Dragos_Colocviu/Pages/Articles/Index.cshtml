@@ -1,0 +1,89 @@
+﻿@page
+@model Mezei_Dragos_Colocviu.Pages.Articles.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+body {
+    background-color: whitesmoke;
+}
+
+.articles {
+    float: left;
+    width: 75%;
+}
+
+.about-me {
+    float: right;
+    width: 25%;
+    padding-left: 20px;
+}
+
+p {
+    text-align: justify;
+}
+
+.soc-icon {
+    width: 30px;
+    height: 30px;
+}
+
+.row {
+    position: relative;
+    left: 20px;
+    display: inline-block;
+    justify-content: space-evenly;
+}
+
+.box {
+    background-color: lightsteelblue;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+img {
+    max-height: 100%;
+    max-width: 100%;
+}
+</style>
+
+<div class="box">
+    <h1>My Simple Blog</h1>
+    <a asp-page="Create"><button type="button">Post New Article</button></a>
+</div>
+
+<div class="articles">
+    @foreach (var article in Model.Article)
+    {
+    <div class="box">
+        <h2>@Html.DisplayFor(modelItem => article.Title)</h2> <br/>
+
+        <img src=@Html.DisplayFor(modelItem => article.Image)> <br/><br/>
+        <p>@Html.DisplayFor(modelItem => article.Content)</p>
+
+        <h5>Posted on: @Html.DisplayFor(modelItem => article.ArticleDate)</h5>
+        <a asp-page="./Edit" asp-route-id="@article.ID"><button type="button">Edit Article</button></a>
+        <a asp-page="./Delete" asp-route-id="@article.ID"><button type="button">Delete Article</button></a>
+    </div>
+    }
+</div>
+
+<div class="about-me">
+    <div class="box">
+        <h4>About me!</h4>
+        <img src="~/images/me.jpg" width="130" height="130"/> <br/><br/>
+        <p>Hi, my name is Dragos! I'm a Romanian student, currently studying economics. My main passions are data science, psychology and learning new things. Hit me up if you want to chat!</p>
+    </div>
+
+    <div class="box">
+        <h5>Follow me on:</h5>
+        <div class="row">
+            <a href="https://www.facebook.com/dragosandrei693"><img class="soc-icon" src="~/images/fb.png" /></a>
+            <a href="mailto: mezeidragos99@gmail.com"><img class="soc-icon" src="~/images/gmail.png" /></a>
+            <a href="https://www.instagram.com/mezeidragos/"><img class="soc-icon" src="~/images/ig.png" /></a>
+        </div>
+    </div>
+</div>
+<div style="clear:both;"></div>
